@@ -1,16 +1,32 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Navigation from '../components/Navigation'
+import Footer from '../components/Footer'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://dr-mmelandet.vercel.app'),
-  title: 'drømmelandet',
-  description: 'Welcome to our website',
-  keywords: 'Other, drømmelandet',
+  metadataBase: new URL('https://drømmelandet.dk'),
+  title: {
+    default: 'drømmelandet - Professional Services',
+    template: '%s | drømmelandet'
+  },
+  description: 'Vi forvandler drømme til virkelighed gennem ekspertise, innovation og dansk kvalitet. Din betroede partner for enestående løsninger.',
+  keywords: 'strategisk rådgivning, business transformation, innovation, Danmarks foretrukne transformationspartner, drømmelandet',
   authors: [{ name: 'drømmelandet' }],
   openGraph: {
-    title: 'drømmelandet',
-    description: 'Welcome to our website',
+    title: 'drømmelandet - Professional Services',
+    description: 'Vi forvandler drømme til virkelighed gennem ekspertise, innovation og dansk kvalitet.',
     type: 'website',
+    locale: 'da_DK',
+    siteName: 'drømmelandet',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'drømmelandet - Professional Services',
+    description: 'Vi forvandler drømme til virkelighed gennem ekspertise, innovation og dansk kvalitet.',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
@@ -20,33 +36,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
-        <div className="background-orbs" aria-hidden="true">
-          <div className="orb-1" />
-          <div className="orb-2" />
-        </div>
+    <html lang="da" className="scroll-smooth">
+      <body>
+        <Navigation />
         
-        {/* SVG Filters for advanced effects */}
-        <svg className="liquid-filter" aria-hidden="true">
-          <defs>
-            <filter id="liquid-distortion">
-              <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="turbulence" />
-              <feColorMatrix in="turbulence" type="saturate" values="2" />
-              <feComposite in="turbulence" in2="SourceGraphic" operator="over" />
-              <feGaussianBlur stdDeviation="0.5" />
-            </filter>
-            <filter id="glow-filter">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-        </svg>
+        <main className="pt-20">
+          {children}
+        </main>
         
-        {children}
+        <Footer />
       </body>
     </html>
   )

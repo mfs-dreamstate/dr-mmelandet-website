@@ -236,7 +236,7 @@ const config: Config = {
     },
   },
   plugins: [
-    function({ addUtilities, theme }) {
+    function({ addUtilities, theme }: { addUtilities: any; theme: any }) {
       const newUtilities = {
         '.text-stroke': {
           '-webkit-text-stroke': '1px currentColor',
